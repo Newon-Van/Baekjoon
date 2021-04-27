@@ -5,6 +5,7 @@ int main ()
 	int A;
 	int B;
 	int C;
+	int N;
 	int result;
 
 	result = 0;
@@ -13,11 +14,12 @@ int main ()
 	scanf("%d", &B);
 	scanf("%d", &C);
 
-	while ((C * result) <= (A+(B * result)))
-		result++;
-	if (result == 0 || B >= C)
+	if (B >= C)
 		printf("-1");
 	else
-		printf("%d", result);
+	{
+		N = (A / ( C - B) + 1);
+		printf("%d", N);
+	}
 	return (0);
 }
