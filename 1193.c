@@ -3,26 +3,30 @@
 int main ()
 {
 	int X;
-	int start;
+	int N;
 	int direction;
 	int AP;
+	int adjust;
 
 	scanf("%d", &X);
-	start = 0;
 	direction = -1;
 	AP = 0;
+	N = 0;
 
-	while (AP <= X)
+	while (AP < X)
 	{
-		start++;
-		AP += start;
+		AP = (N*(N + 1))/2;
+		adjust = ((N*(N-1))/2);
+		N++;
 		direction *= -1;
 	}
 
+	N--;
+	X -= adjust;
+
+	if (direction == -1)
+		printf("%d/%d", N-X+1, X);
 	if (direction == 1)
-		printf("%d/%d", ((start+1) - (X-AP) + 1), (X-AP));
-	else if (direction == -1)
-		printf("%d/%d", (X-AP), ((start+1) - (X-AP) + 1));
-		
+		printf("%d/%d", X, N-X+1);
 	return (0);
 }
