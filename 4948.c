@@ -1,54 +1,63 @@
 #include <stdio.h>
 
-int ft_prime(int n)
+int	g_arr[246913] = { 0 };
+
+void	ft_init(int N)
+{
+	int i;
+
+	i = 0;
+	while (i <= N)
+	{
+		g_arr[i] = 0;
+		i++;
+	}
+}
+
+void	ft_eratos(int N)
 {
 	int prime;
+	int check;
 
 	prime = 2;
-	while(prime * prime < n)
+	while (prime < N)
+	{
+		check = prime;
+		while (check <= N) 
+		{
+			check += prime;
+			if (check <= N)
+				g_arr[check] = 1;
+		}
 		prime++;
-	return (prime);
+	}
 }
 
 int main ()
 {
-	int n;
-	int tem;
-	int prime;
-	int check;
+	int M;
+	int N;
 	int count;
-	int tem_prime;
 
-	scanf("%d", &n);
-	check = 0;
+	scanf("%d", &M);
+	N = 2 * M;
 	count = 0;
 
-	while (n)
+	while (M)
 	{
-		tem = n + 1;
-		prime = ft_prime(tem);
-		tem_prime = prime;
-		while (tem <= (n * 2))
+		M++;
+		ft_eratos(N);
+		while (M <= N)
 		{
-			while (prime < tem)
-			{
-				if (tem % prime == 0)
-				{
-					check = 1;
-					break;
-				}
-				prime++;
-			}
-			if (check == 0 && tem != 1)
+			if (g_arr[M] == 0 && M != 1)
 				count++;
-			tem++;
-			prime = tem_prime;
-			check = 0;
+			M++;
 		}
 		printf("%d\n", count);
-		scanf ("%d", &n);
-		check = 0;
 		count = 0;
+		ft_init(N);
+		scanf("%d", &M);
+		N = 2 * M;
 	}
 	return (0);
 }
