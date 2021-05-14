@@ -1,43 +1,48 @@
 #include <stdio.h>
 
-void	ft_star()
+int ft_sqrt(int N)
+{
+	int sqrt;
+
+	sqrt = 1;
+	while (sqrt * sqrt <= N)
+		sqrt++;
+	return (sqrt);
+}
+
+int ft_star(int N)
 {
 	int i;
 	int j;
+	int sqrt;
 
-	i = 0;
-	j = 0;
-	while (i < 3)
+	i = 1;
+	j = 1;
+	sqrt = ft_sqrt(N);
+
+	while (i <= N)
 	{
-		while (j < 3)
+		while (j <= N)
 		{
-			j++;
-			if (i == 1 && j == 2)
+			if (i % 2 == 0 && j % 2 == 0 && i != (N/3) + 1)
 				printf(" ");
+			else if (i == (N / 3) + 1)
+			{
+				while ( i != sqrt + (N / 3) + 1)
+				{
+					printf(" ");
+					i++;
+				}
+			}
 			else
 				printf("*");
+			j++;
 		}
 		printf("\n");
-		j = 0;
+		j = 1;
 		i++;
 	}
-}
-
-int	ft_repeat(N)
-{
-	int i;
-	i = 0;
-
-	while (i < N/3)
-	{
-		ft_star();
-		i++;
-	}
-
-	N--;
-	if (N == 0)
-		return (0);
-	return (ft_repeat(N));
+	return (0);
 }
 
 int main ()
@@ -45,8 +50,7 @@ int main ()
 	int N;
 
 	scanf("%d", &N);
-	N = (N/3) * (N/3);
 
-	ft_repeat(N);
+	ft_star(N);
 	return (0);
 }
