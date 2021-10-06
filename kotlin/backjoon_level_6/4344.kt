@@ -11,7 +11,7 @@ fun main() {
 	var average: Double
 	var sumCount: Double
 	var result: Double
-
+ 
 	for (i in 1..testCase) {
 		sum = 0.0
 		average = 0.0
