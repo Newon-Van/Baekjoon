@@ -16,7 +16,7 @@
 //
 //    while(queue.isNotEmpty()){
 //        var now = queue.poll()
-//
+// 
 //        if(linkedList[now].size == 3){
 //            reach++
 //            if(reach == 2)
