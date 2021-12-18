@@ -53,6 +53,7 @@ def changing(color):
 
 N = int(input())
 board = [list(list(input())) for _ in range(N)]
+
 direction = [Coordinate(-1, 0), Coordinate(1, 0), Coordinate(0, -1), Coordinate(0, 1)]
 count = 0
 now = Coordinate(0, 0)
