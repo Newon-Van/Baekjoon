@@ -22,6 +22,7 @@ fun bfs(A: Int, B: Int) {
     var tempIndex: Int
     val commandList = arrayOf('D', 'S', 'L', 'R')
     queue.add(A)
+    visit[A] = true
 
     while (queue.isNotEmpty()) {
         n = queue.poll()
@@ -31,6 +32,7 @@ fun bfs(A: Int, B: Int) {
         if (temp == 0)
             digit = Array(4) { 0 }
         else
+            digit = Array(4) {0}
             while (temp != 0) {
                 digit[tempIndex] = temp % 10
                 temp /= 10
@@ -51,7 +53,7 @@ fun bfs(A: Int, B: Int) {
                 }
 
                 'S' -> {
-                    next = if (n - 1 < 0)
+                    next = if (n - 1 == -1)
                         9999
                     else
                         n - 1
