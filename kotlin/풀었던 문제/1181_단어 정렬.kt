@@ -9,18 +9,22 @@ fun main() {
         inputs.add(br.readLine())
     }
 
-    inputs.sortWith(comparator = {})
+    inputs.sortWith(compareBy({ it.length }, { it }))
 
     var i = 0
-    while(i != inputs.lastIndex){
-        if (i != inputs.lastIndex - 1 && inputs[i] == inputs[i + 1]){
+    while (i != inputs.lastIndex) {
+        if (inputs[i] == inputs[i + 1]) {
             inputs.removeAt(i)
             i--
         }
         i++
     }
 
-    bw.append("$inputs")
+    for (i in inputs.indices) {
+        bw.append("${inputs[i]}")
+        if (i != inputs.lastIndex)
+            bw.append("\n")
+    }
     bw.flush()
     bw.close()
 }
