@@ -1,16 +1,14 @@
-import kotlin.time.ExperimentalTime
-import kotlin.time.TimeSource
-
 lateinit var lanCable: Array<Int>
 
-fun solve(K: Int, N: Int): Int {
-    var minimumLan = 0
-    var maximumLan = lanCable[lanCable.lastIndex] + 1
-    var mid: Int
-    var count:Long = 0
+fun solve(K: Int, N: Int): Long {
+    var minimumLan:Long = 0
+    var maximumLan:Long = lanCable[lanCable.lastIndex] + 1.toLong()
+    var mid: Long
+    var count:Long
 
     while (minimumLan < maximumLan){
         mid = (maximumLan + minimumLan) / 2
+        count = 0
 
         for(i in lanCable.indices){
             count += (lanCable[i] / mid)
