@@ -1,46 +1,58 @@
-import java.math.*
+lateinit var ground: Array<Array<Int>>
+var heightArray = Array(257) { -1 }
 
-lateinit var mineMap: Array<Array<Int>>
-
-fun mode(N: Int, M: Int) {
-    var mode = 1
-    var freq = 1
-    var count = 1
-
-
-    for (i in 0 until N) {
-        for (j in 0 until M) {
-            freq = 1
-            for (k in j + 1 until M) {
-                if (mineMap[i][j] == mineMap[i][k])
-                    freq++
-            }
-            if (freq >= count) {
-                mode = mineMap[i][j]
-                count = freq
-            }
-        }
-    }
-
-    println("$mode, $freq")
-}
-
-fun solve(N: Int, M: Int, B: Int) {
-
-}
+data class Result(var time: Int, var target: Int)
 
 fun main() {
     val br = System.`in`.bufferedReader()
     val bw = System.`out`.bufferedWriter()
+    var target: Int
+    var block: Int
+    var time: Int
+    var temp: Int
+    var result = Result(Int.MAX_VALUE, -1)
 
     val (N, M, B) = br.readLine().split(" ").map { it.toInt() }
-    mineMap = Array(N) { Array(M) { 0 } }
+    ground = Array(N) { Array(M) { 0 } }
+    for (i in ground.indices) {
+        ground[i] = br.readLine().split(" ").map { it.toInt() }.toTypedArray()
+        ground[i].groupingBy { it }.eachCount().map { heightArray[it.key] += it.value + 1 }
+    }
 
+    while (true) {
+        time = 0
+        block = B
+        target = heightArray.indexOf(heightArray.maxOrNull())
+        if (target == 0 && heightArray[0] == -1)
+            break
+        heightArray[heightArray.indexOf(heightArray.maxOrNull())] = -1
 
-    for (i in mineMap.indices) {
-        mineMap[i] = br.readLine().split(" ").map { it.toInt() }.toTypedArray()
-        for (j in 0 until M) {
+        loop@ for (i in ground.indices) {
+            for (j in ground[i].indices) {
+                if (ground[i][j] < target) {
+                    block -= 1
+                    time += 1
 
+                    if (block < 0)
+                        break@loop
+
+                } else if (ground[i][j] > target) {
+                    temp = ground[i][j]
+                    while (temp != target) {
+                        temp -= 1
+                        block += 1
+                        time += 2
+                    }
+                }
+            }
+        }
+
+        if (block >= 0 && time <= result.time && target >= result.target) {
+            result.time = time
+            result.target = target
         }
     }
+    bw.append("${result.time} ${result.target}")
+    bw.flush()
+    bw.close()
 }

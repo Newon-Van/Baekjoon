@@ -2,7 +2,7 @@ lateinit var lanCable: Array<Int>
 
 fun solve(K: Int, N: Int): Long {
     var minimumLan:Long = 0
-    var maximumLan:Long = lanCable[lanCable.lastIndex] + 1.toLong()
+    var maximumLan:Long = lanCable[lanCable.lastIndex].toLong()
     var mid: Long
     var count:Long
 

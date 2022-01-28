@@ -1,5 +1,5 @@
 //import java.util.*
-
+//
 //import java.util.*
 //import kotlin.collections.ArrayList
 //
@@ -55,7 +55,7 @@
 //}
 //
 // ---------------------- 위는 linkedlist / 밑에는 배열로
-
+//
 //lateinit var graph : Array<Array<Int>>
 //lateinit var bfsVisit : BooleanArray
 //
