@@ -1,5 +1,7 @@
+import kotlin.math.max
+import kotlin.math.min
+
 lateinit var ground: Array<Array<Int>>
-var heightArray = Array(257) { -1 }
 
 data class Result(var time: Int, var target: Int)
 
@@ -10,39 +12,33 @@ fun main() {
     var block: Int
     var time: Int
     var temp: Int
+    var minimum = 256
+    var maximum = 0
     var result = Result(Int.MAX_VALUE, -1)
+
 
     val (N, M, B) = br.readLine().split(" ").map { it.toInt() }
     ground = Array(N) { Array(M) { 0 } }
     for (i in ground.indices) {
         ground[i] = br.readLine().split(" ").map { it.toInt() }.toTypedArray()
-        ground[i].groupingBy { it }.eachCount().map { heightArray[it.key] += it.value + 1 }
+        minimum = min(minimum, ground[i].minOrNull()!!)
+        maximum = max(maximum, ground[i].maxOrNull()!!)
     }
 
-    while (true) {
+
+    for (target in minimum..maximum) {
         time = 0
         block = B
-        target = heightArray.indexOf(heightArray.maxOrNull())
-        if (target == 0 && heightArray[0] == -1)
-            break
-        heightArray[heightArray.indexOf(heightArray.maxOrNull())] = -1
 
         loop@ for (i in ground.indices) {
             for (j in ground[i].indices) {
-                if (ground[i][j] < target) {
-                    block -= 1
-                    time += 1
+                if (ground[i][j] > target) {
+                    time += (ground[i][j] - target) * 2
+                    block += ground[i][j] - target
 
-                    if (block < 0)
-                        break@loop
-
-                } else if (ground[i][j] > target) {
-                    temp = ground[i][j]
-                    while (temp != target) {
-                        temp -= 1
-                        block += 1
-                        time += 2
-                    }
+                } else if (ground[i][j] < target) {
+                    time += target - ground[i][j]
+                    block -= target - ground[i][j]
                 }
             }
         }
