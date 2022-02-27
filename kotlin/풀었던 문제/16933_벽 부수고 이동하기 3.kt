@@ -1,6 +1,6 @@
 lateinit var board: Array<Array<Int>>
 
-data class Coordinate(val row: Int, val cul: Int, val chanceTimes: Int)
+data class Coordinate(val row: Int, val cul: Int, val chanceTimes: Int, val isNight: Boolean)
 
 fun bfs(N: Int, M: Int, K: Int): Int {
     if (N == 1 && M == 1)
