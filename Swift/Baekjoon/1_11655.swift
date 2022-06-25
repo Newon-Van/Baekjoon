@@ -33,3 +33,39 @@ for i in input {
 }
 
 print(result)
+
+
+// ----------------------------------------------------
+
+import Foundation
+
+let input = Array(readLine()!)
+var result = ""
+
+for character in input {
+    if character >= "a" && character <= "z" {
+        
+        let temp = character.asciiValue! + 13
+        
+        if temp <= Character("z").asciiValue! {
+            result += String(UnicodeScalar(temp))
+        } else {
+            result += String(UnicodeScalar(temp - 26))
+        }
+        
+    } else if character >= "A" && character <= "Z" {
+        
+        let temp = character.asciiValue! + 13
+        
+        if temp <= Character("Z").asciiValue! {
+            result += String(UnicodeScalar(temp))
+        } else {
+            result += String(UnicodeScalar(temp - 26))
+        }
+
+    } else {
+        result += String(character)
+    }
+}
+
+print(result)

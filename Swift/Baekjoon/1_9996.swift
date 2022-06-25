@@ -26,3 +26,24 @@ for _ in 1...N {
         print("NE")
     }
 }
+
+// -----------------------------------------------------------------
+
+import Foundation
+
+let N = Int(readLine()!)!
+let standard = readLine()!.split(separator: "*").map{ $0 }
+
+
+for _ in 1 ... N {
+    let input = readLine()!
+    
+    if input.count < standard[0].count + standard[1].count {
+        print("NE")
+    }
+    else if input.hasPrefix(standard[0]) && input.hasSuffix(standard[1]) {
+        print("DA")
+    } else {
+        print("NE")
+    }
+}
