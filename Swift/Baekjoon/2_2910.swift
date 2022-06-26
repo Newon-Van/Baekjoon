@@ -31,11 +31,11 @@ for i in counter {
     resultNums.append(Count(i.value[0], i.key, i.value[1]))
 }
 
-resultNums.sort{
+resultNums.sort {
     $0.frequency == $1.frequency ? $0.order < $1.order : $0.frequency > $1.frequency
 }
 
-resultNums.forEach{
+resultNums.forEach {
     result += String(repeating: "\($0.value) ", count: $0.frequency)
 }
 

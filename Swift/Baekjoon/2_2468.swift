@@ -79,7 +79,6 @@ func solve(graph: inout [[Int]],start: Coordinate, depth: Int){
 }
 
 
-
 let N = Int(readLine()!)!
 var minimum = 100
 
