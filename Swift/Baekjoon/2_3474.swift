@@ -9,25 +9,15 @@ import Foundation
 
 var testCase = Int(readLine()!)!
 
-while testCase > 0 {
+for _ in 1 ... testCase {
     let input = Int(readLine()!)!
-    var fiveCount = 0
+    var count = 0
+    var check = 1
     
-    for i in 1 ... input {
-        var temp = i
-        
-        if temp % 5 == 0 {
-            while temp % 5 == 0 {
-                fiveCount += 1
-                temp /= 5
-            }
-        }
-        
+    while check <= input {
+        check *= 5
+        count += input / check
     }
-    count = count + fiveCount
     
     print(count)
-    
-    fiveCount = 0
-    testCase -= 1
 }

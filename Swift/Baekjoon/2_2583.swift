@@ -33,7 +33,7 @@ struct Queue<T> {
             output = input.reversed()
             input.removeAll()
         }
-        return output.removeFirst()
+        return output.removeLast()
     }
 }
 

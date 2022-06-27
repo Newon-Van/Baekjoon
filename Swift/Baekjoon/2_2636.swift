@@ -51,7 +51,6 @@ func bfs() -> Bool {
     var temp = 0
     var visited = [[Bool]](repeating: [Bool](repeating: false, count: M), count: N)
     
-    
     var isClear = true
     
     while !queue.isEmpty {

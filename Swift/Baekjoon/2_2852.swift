@@ -47,7 +47,6 @@ var secondTeamSecond = String(secondTeam % 60)
 
 if firstTeamMinute.count == 1{
     firstTeamMinute = "0" + firstTeamMinute
-    
 }
 if firstTeamSecond.count == 1{
     firstTeamSecond = "0" + firstTeamSecond
