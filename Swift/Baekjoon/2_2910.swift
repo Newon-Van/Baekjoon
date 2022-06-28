@@ -33,9 +33,7 @@ for i in counter {
 
 resultNums.sort {
     $0.frequency == $1.frequency ? $0.order < $1.order : $0.frequency > $1.frequency
-}
-
-resultNums.forEach {
+}.forEach {
     result += String(repeating: "\($0.value) ", count: $0.frequency)
 }
 
