@@ -36,16 +36,9 @@ while testCase > 0 {
     testCase -= 1
 }
 
-//result.sort{ (first, second) -> Bool in
-//    if first.count == second.count {
-//        return first < second
-//    } else {
-//        return first.count < second.count
-//    }
-//}
 
 result.sort{
-    $0.count == $1.count ? : $0 < $1 : $0.count < $1.count
+    $0.count == $1.count ? $0 < $1 : $0.count < $1.count
 }
 
 result.forEach{

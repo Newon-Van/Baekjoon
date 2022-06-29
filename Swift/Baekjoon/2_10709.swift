@@ -23,8 +23,6 @@ func solve(startH: Int) {
     }
 }
 
-
-
 let input = readLine()!.components(separatedBy: " ").map{ Int($0)! }
 let H = input[0], W = input[1]
 var graph = [[Character]](repeating: [Character](repeating: Character("."), count: W), count: H)
