@@ -16,6 +16,9 @@ struct Queue<T> {
     var count : Int {
         return input.count + output.count
     }
+    var peek : T? {
+        return input.first
+    }
     
     mutating func enqueue(_ element: T) {
         input.append(element)
