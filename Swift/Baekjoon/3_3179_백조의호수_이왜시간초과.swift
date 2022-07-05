@@ -78,10 +78,11 @@ func goSwan() -> Bool {
 
 func spreadWater() -> Int {
     var time = 0
+    var canMeet = false
 
-    while goSwan() == false {
+    while !canMeet {
         time += 1
-        var newWaterSet = Set<Coordinate>()
+        var newWaterQueue = Queue<Coordinate>()
         
         while !waterQueue.isEmpty {
             let now = waterQueue.dequeue()
@@ -100,7 +101,7 @@ func spreadWater() -> Int {
                 }
                 
                 if graph[next.y][next.x] == "X" {
-                    newWaterSet.insert(next)
+                    newWaterSet.enqueue(next)
                     continue
                 }
                 
@@ -108,11 +109,8 @@ func spreadWater() -> Int {
                 graph[next.y][next.x] = "P"
             }
         }
-        newWaterSet.forEach { water in
-            graph[water.y][water.x] = "."
-            waterQueue.enqueue(water)
-        }
-        newWaterSet.removeAll()
+        canMeet = goSwan()
+        if !canMeet { waterQueue = newWaterQueue }
     }
     
     return time
