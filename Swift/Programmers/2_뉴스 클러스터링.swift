@@ -9,7 +9,7 @@ func solution(_ str1:String, _ str2:String) -> Int {
     
     var result = 1
     var first = [String]()
-    var interSection = [String:Int]()
+    var interSection = Set<Int>()
     var union = 0
     
     var temp = Array(str1.lowercased())
@@ -34,22 +34,12 @@ func solution(_ str1:String, _ str2:String) -> Int {
     print(first)
     print(second)
     
-    if first.count < second.count {
-        for f in first {
-            for s in second {
-                if f == s {
-                    interSection
-                    break
-                }
-            }
-        }
-    } else {
-        for s in second {
-            for f in first {
-                if s == f {
-                    interSection.append(s)
-                    break
-                }
+    for i in 0 ..< first.count {
+        for j in 0 ..< second.count {
+            if first[i] == second[j] {
+                interSection.insert(i)
+                second[j] = "--"
+                break
             }
         }
     }
@@ -65,5 +55,3 @@ func solution(_ str1:String, _ str2:String) -> Int {
     
     return result
 }
-
-// 푸는 중
