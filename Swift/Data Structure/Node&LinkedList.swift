@@ -260,3 +260,153 @@ public func example(of description: String, action: () -> Void) {
   action()
   print()
 }
+
+
+
+
+//
+//
+//import Foundation
+//
+//class Node<T> {
+//    var value: T
+//    var next: Node<T>?
+//
+//    init(value: T, next: Node<T>? = nil) {
+//        self.value = value
+//        self.next = next
+//    }
+//}
+//
+//struct LinkedList<T> {
+//    var head: Node<T>?
+//    var tail: Node<T>?
+//    private var count: Int
+//
+//    var isEmpty : Bool {
+//        return head == nil
+//    }
+//
+//    var length : Int {
+//        return count
+//    }
+//
+//    init() {
+//        count = 0
+//    }
+//
+//    mutating func push(_ value: T) {
+//        head = Node(value: value, next: head)
+//        if tail == nil {
+//            tail = head
+//        }
+//        count += 1
+//    }
+//
+//    mutating func append(_ value: T) {
+//        guard !isEmpty else {
+//            push(value)
+//            return
+//        }
+//
+//        tail!.next = Node(value: value)
+//        tail = tail!.next
+//        count += 1
+//    }
+//
+//    func find(at index: Int) -> Node<T>? {
+//        var currentNode = head
+//        var currentIndex = 0
+//
+//        while currentNode != nil && currentIndex < index {
+//            currentNode = currentNode?.next
+//            currentIndex += 1
+//        }
+//
+//        return currentNode
+//    }
+//
+//    @discardableResult
+//    mutating func insert(_ value: T, after node: Node<T>) -> Node<T> {
+//        guard tail !== node else {
+//            append(value)
+//            return tail!
+//        }
+//
+//        node.next = Node(value: value, next: node.next)
+//        count += 1
+//        return node.next!
+//    }
+//
+//    mutating func pop() -> T? {
+//        defer {
+//            head = head?.next
+//            if isEmpty {
+//                tail = nil
+//            }
+//            count -= 1
+//        }
+//        return head?.value
+//    }
+//
+//    mutating func removeLast() -> T? {
+//        guard let head = head else {
+//            return nil
+//        }
+//        guard head.next != nil else {
+//            return pop()
+//        }
+//
+//        var prev = head
+//        var current = head
+//
+//        while let next = current.next {
+//            prev = current
+//            current = next
+//        }
+//        prev.next = nil
+//        tail = prev
+//        count -= 1
+//
+//        return current.value
+//    }
+//
+//    func middle() -> Node<T>? {
+//        if length % 2 == 0 {
+//            return find(at: (count / 2) - 1)
+//        }
+//        return find(at: count / 2)
+//    }
+//
+//    mutating func reverse() {
+//        tail = head
+//
+//        var prev = head
+//        var current = head?.next
+//
+//        prev?.next = nil
+//
+//        while current != nil {
+//            let next = current?.next
+//            current?.next = prev
+//            prev = current
+//            current = next
+//        }
+//        head = prev
+//
+//    }
+//}
+//
+//var list = LinkedList<Int>()
+//list.push(5)
+//list.push(4)
+//list.push(3)
+//list.push(2)
+//list.push(1)
+//
+////while !list.isEmpty { print(list.removeLast()!) }
+//
+////print(list.middle()!.value)
+//list.reverse()
+//
+//while !list.isEmpty { print(list.removeLast()!) }
